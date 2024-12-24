@@ -1,0 +1,80 @@
+{
+	"name": "client",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"@emoji-mart/data": "^1.2.1",
+		"@emoji-mart/react": "^1.1.1",
+		"@nextui-org/react": "^2.4.1",
+		"axios": "^1.7.2",
+		"class-variance-authority": "^0.7.0",
+		"clsx": "^2.1.1",
+		"emoji-picker-react": "^4.11.0",
+		"framer-motion": "^11.2.10",
+		"lucide-react": "^0.395.0",
+		"mart": "^1.0.0",
+		"pusher-js": "^8.4.0-rc2",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-icons": "^5.2.1",
+		"react-lottie": "^1.2.4",
+		"react-otp-input": "^3.1.1",
+		"react-router-dom": "^6.23.1",
+		"react-toastify": "^10.0.5",
+		"recoil": "^0.7.7",
+		"socket.io-client": "^4.7.5",
+		"tailwind-merge": "^2.3.0",
+		"tailwindcss-animate": "^1.0.7"
+	},
+	"devDependencies": {
+		"@types/node": "^20.14.5",
+		"@types/react": "^18.2.66",
+		"@types/react-dom": "^18.2.22",
+		"@vitejs/plugin-react": "^4.2.1",
+		"autoprefixer": "^10.4.19",
+		"eslint": "^8.57.0",
+		"eslint-plugin-react": "^7.34.1",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"eslint-plugin-react-refresh": "^0.4.6",
+		"postcss": "^8.4.38",
+		"tailwindcss": "^3.4.4",
+		"vite": "^5.2.13"
+	},
+	"Transform": "AWS::Serverless-2016-10-31",
+	"Resources": {
+		"Api": {
+			"Type": "AWS::Serverless::Api",
+			"Properties": {
+				"Name": {
+					"Fn::Sub": [
+						"${ResourceName} From Stack ${AWS::StackName}",
+						{
+							"ResourceName": "Api"
+						}
+					]
+				},
+				"StageName": "Prod",
+				"DefinitionBody": {
+					"openapi": "3.0",
+					"info": {},
+					"paths": {
+						"/": {
+							"get": {
+								"responses": {}
+							}
+						}
+					}
+				},
+				"EndpointConfiguration": "REGIONAL",
+				"TracingEnabled": true
+			}
+		}
+	}
+}

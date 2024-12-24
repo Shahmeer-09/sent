@@ -1,0 +1,13 @@
+const express = require("express")
+const router = express.Router()
+const {CreatChat, getAllChats, CreateGroup, UpdateGroupname, RemoveMember, leavegroup,addnewmembers, deleteGroup} =require('../controllers/ChatController')
+const verifyjwt = require("../middlewares/verifyjwt")
+router.post('/createChat',verifyjwt, CreatChat )
+router.get('/getChats',verifyjwt, getAllChats )
+router.post('/createGroup',verifyjwt, CreateGroup )
+router.post('/updatname',verifyjwt,UpdateGroupname )
+router.post('/removeMember',verifyjwt, RemoveMember )
+router.post('/leaveGroup',verifyjwt, leavegroup )
+router.post('/addnewmembers', verifyjwt, addnewmembers)
+router.post('/delGroup', verifyjwt, deleteGroup)
+module.exports=router
